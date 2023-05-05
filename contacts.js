@@ -24,9 +24,9 @@ async function addContact(data) {
   return newContact;
 }
 
-async function updateContactById(contactId, data) {
+async function updateContactById(id, data) {
   const contacts = await listContacts();
-  const index = contacts.findIndex(({ id }) => id === contactId);
+  const index = contacts.findIndex((item) => item.id === id);
   if (index === -1) {
     return null;
   }

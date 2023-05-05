@@ -1,3 +1,6 @@
+// const argv = require("yargs").argv;
+const { program } = require("commander");
+
 const {
   listContacts,
   getContactById,
@@ -5,8 +8,6 @@ const {
   updateContactById,
   removeContact,
 } = require("./contacts");
-
-// const argv = require("yargs").argv;
 
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
@@ -52,9 +53,18 @@ async function invokeAction({ action, id, name, email, phone }) {
 //   action: "update",
 //   id: "9DOq0IXq95",
 //   name: "Stephan Bodzin",
-//   email: "stephan_bodzin@gmail.com",
+//   email: "stephan_bodzin777@gmail.com",
 //   phone: "(987) 457-7890",
 // });
-invokeAction({ action: "remove", id: "9DOq0IXq95" });
+// invokeAction({ action: "remove", id: "9DOq0IXq95" });
 
 // invokeAction(argv);
+program
+  .option("-a, --action, <type>")
+  .option("-i, --id, <type>")
+  .option("-n, --name, <type>")
+  .option("-e, --email, <type>")
+  .option("-p, --phone, <type>");
+program.parse();
+const options = program.opts();
+invokeAction(options);
